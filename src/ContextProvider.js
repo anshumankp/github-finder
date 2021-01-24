@@ -11,7 +11,7 @@ const GitProvider = props => {
   const [repos, setRepos] = useState([]);
   const [error, setError] = useState('');
   const [count, setCount] = useState();
-  const [endpoint, setEndpoint] = useState('repositories');
+  const [endpoint, setEndpoint] = useState('users');
   const [hasNextPage, setHasNextPage] = useState(false);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const GitProvider = props => {
             client_id: process.env.REACT_APP_GIT_CLIENT_ID,
             client_secret: process.env.REACT_APP_GIT_CLIENT_SECRET,
             page: page,
-            per_page: 15
+            per_page: 9
           }
         })
         .then(res => {
@@ -45,7 +45,7 @@ const GitProvider = props => {
             setRepos(res.data.items);
             console.log(res.data.items);
           }
-          if (res.data.total_count > page * 15) {
+          if (res.data.total_count > page * 9) {
             setHasNextPage(true);
           } else {
             setHasNextPage(false);
@@ -69,7 +69,7 @@ const GitProvider = props => {
             client_id: process.env.REACT_APP_GIT_CLIENT_ID,
             client_secret: process.env.REACT_APP_GIT_CLIENT_SECRET,
             page: page,
-            per_page: 15
+            per_page: 9
           }
         })
         .then(res => {
@@ -82,7 +82,7 @@ const GitProvider = props => {
             setRepos(res.data.items);
             console.log(res.data.items);
           }
-          if (res.data.total_count > page * 15) {
+          if (res.data.total_count > page * 9) {
             setHasNextPage(true);
           } else {
             setHasNextPage(false);

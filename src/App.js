@@ -123,10 +123,10 @@ const App = () => {
             <>
               <Paginate />
               <p>
-                {count <= 15
+                {count <= 9
                   ? `Showing 1 - ${count} out of ${count} matches`
-                  : `Showing ${(page - 1) * 15 + 1} - ${page *
-                      15} out of ${count} matches`}
+                  : `Showing ${(page - 1) * 9 + 1} - ${page *
+                      9} out of ${count} matches`}
               </p>
               <div className='card-deck'>
                 {users.map(user => {
@@ -151,10 +151,10 @@ const App = () => {
             <>
               <Paginate />
               <p>
-                {count <= 15
+                {count <= 9
                   ? `Showing 1 - ${count} out of ${count} matches`
-                  : `Showing ${(page - 1) * 15 + 1} - ${page *
-                      15} out of ${count} matches`}
+                  : `Showing ${(page - 1) * 9 + 1} - ${page *
+                      9} out of ${count} matches`}
               </p>
               <Table striped bordered>
                 <thead>
