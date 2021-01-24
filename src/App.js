@@ -84,7 +84,7 @@ const App = () => {
             onChange={e => handleSearch(e)}
           />
         </InputGroup>
-        <InputGroup size='lg' className='mb-4'>
+        <InputGroup className='mb-4'>
           <Form.Check
             inline
             size='lg'
@@ -147,10 +147,9 @@ const App = () => {
             !loading &&
             !error &&
             (!value ? (
-              <div>
-                It's quite lonely in here. Type something above to GIT the user
-                you're looking for ;)
-              </div>
+              <h3>
+                Type something above to GIT the user you're looking for :)
+              </h3>
             ) : (
               <p>Sorry, no such git user found</p>
             ))
@@ -185,10 +184,9 @@ const App = () => {
             !loading &&
             !error &&
             (!value ? (
-              <div>
-                It's quite lonely in here. Type something above to GIT the repo
-                you're looking for ;)
-              </div>
+              <h3>
+                Type something above to GIT the repo you're looking for :)
+              </h3>
             ) : (
               <p>Sorry, no such git repository found</p>
             ))

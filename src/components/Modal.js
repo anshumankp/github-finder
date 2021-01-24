@@ -81,16 +81,22 @@ const UserModal = props => {
               {userData.email && (
                 <ListGroupItem>Email: {userData.email}</ListGroupItem>
               )}
-              <ListGroupItem>
-                Public Repos: {userData.public_repos}
-              </ListGroupItem>
+              {userData.blog && (
+                <ListGroupItem>Website: {userData.blog}</ListGroupItem>
+              )}
             </ListGroup>
+            <h4 className='text-center'>
+              <Badge className='mx-2' variant='secondary'>
+                Followers: {userData.followers}
+              </Badge>
+
+              <Badge className='mx-2' variant='info'>
+                Public Repos: {userData.public_repos}
+              </Badge>
+            </h4>
           </Modal.Body>
         </>
       )}
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
   );
 };
