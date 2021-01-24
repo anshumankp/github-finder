@@ -18,6 +18,7 @@ const GitProvider = props => {
     setPage(1);
     if (query === '') {
       setUsers([]);
+      setRepos([]);
       return;
     }
 
@@ -30,7 +31,7 @@ const GitProvider = props => {
             client_id: process.env.REACT_APP_GIT_CLIENT_ID,
             client_secret: process.env.REACT_APP_GIT_CLIENT_SECRET,
             page: page,
-            per_page: 10
+            per_page: 5
           }
         })
         .then(res => {
@@ -44,7 +45,7 @@ const GitProvider = props => {
             setRepos(res.data.items);
             console.log(res.data.items);
           }
-          if (res.data.total_count > page * 10) {
+          if (res.data.total_count > page * 5) {
             setHasNextPage(true);
           } else {
             setHasNextPage(false);
@@ -68,7 +69,7 @@ const GitProvider = props => {
             client_id: process.env.REACT_APP_GIT_CLIENT_ID,
             client_secret: process.env.REACT_APP_GIT_CLIENT_SECRET,
             page: page,
-            per_page: 10
+            per_page: 5
           }
         })
         .then(res => {
@@ -81,7 +82,7 @@ const GitProvider = props => {
             setRepos(res.data.items);
             console.log(res.data.items);
           }
-          if (res.data.total_count > page * 10) {
+          if (res.data.total_count > page * 5) {
             setHasNextPage(true);
           } else {
             setHasNextPage(false);

@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Button, Image, Row, Col } from 'react-bootstrap';
+import {
+  Modal,
+  Button,
+  Image,
+  Row,
+  Col,
+  Badge,
+  ListGroup,
+  ListGroupItem,
+  Container
+} from 'react-bootstrap';
 import Loader from './Loader';
 import axios from 'axios';
 
@@ -24,45 +34,64 @@ const UserModal = props => {
       })
       .catch(err => {
         console.error(err);
+        setLoading(false);
       });
   }, [userid]);
 
   return (
-    <>
-      <Modal
-        {...props}
-        size='lg'
-        aria-labelledby='contained-modal-title-vcenter'
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id='contained-modal-title-vcenter'>{userid}</Modal.Title>
-        </Modal.Header>
-        {loading ? (
-          <Loader />
-        ) : (
+    <Modal {...props} size='md' centered>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Modal.Header closeButton>
+            <Modal.Title id='contained-modal-title-vcenter'>
+              {userData.name}
+            </Modal.Title>
+          </Modal.Header>
           <Modal.Body>
-            <Image
-              style={{ borderRadius: '50%', height: '250px', width: '250px' }}
-              src={userData.avatar_url}
-            />
-            <h4>{userData.name}</h4>
-            <Row>
-              <Col>
-                {' '}
-                <p>
-                  {userData.bio ??
-                    'This user does not have a bio in their github account.'}
-                </p>
-              </Col>
-            </Row>
+            <div className='mb-2 w-50 mx-auto text-center'>
+              <Image
+                style={{
+                  borderRadius: '50%',
+                  height: '200px',
+                  width: '200px'
+                }}
+                src={userData.avatar_url}
+              />
+            </div>
+            <h3 className='my-2 w-50 mx-auto text-center'>
+              <i className='fab fa-github mr-1'></i>
+              <a href={userData.html_url} target='_blank'>
+                {userData.login}
+              </a>
+            </h3>
+            <p className='text-muted text-center px-2'>{userData.bio ?? ''}</p>
+            <ListGroup className='p-2 m-2'>
+              {userData.company && (
+                <ListGroupItem className='text-capitalize'>
+                  Company: {userData.company.replace('@', '')}
+                </ListGroupItem>
+              )}
+              {userData.location && (
+                <ListGroupItem className='text-capitalize'>
+                  Location: {userData.location}
+                </ListGroupItem>
+              )}
+              {userData.email && (
+                <ListGroupItem>Email: {userData.email}</ListGroupItem>
+              )}
+              <ListGroupItem>
+                Public Repos: {userData.public_repos}
+              </ListGroupItem>
+            </ListGroup>
           </Modal.Body>
-        )}
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+        </>
+      )}
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
 

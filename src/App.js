@@ -70,12 +70,17 @@ const App = () => {
           </InputGroup.Append>
 
           <Form.Control
+            size='lg'
             type='text'
             name='searchQuery'
             className='border-left-0'
             value={value}
             autoComplete='off'
-            placeholder='Search user or repo..'
+            placeholder={
+              endpoint === 'users'
+                ? 'Search for a github user..'
+                : 'Search for a github repository...'
+            }
             onChange={e => handleSearch(e)}
           />
         </InputGroup>
@@ -164,7 +169,7 @@ const App = () => {
               <Table striped bordered>
                 <thead>
                   <tr>
-                    <th>Repo</th>
+                    <th>Repository Name</th>
                     <th>Description</th>
                     <th>Owner</th>
                   </tr>
