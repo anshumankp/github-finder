@@ -9,7 +9,35 @@
   height: 100px;
   width: 100%;
   background: lightgrey;
-
-  /* background: linear-gradient(grey, lightgrey); */
   clip-path: polygon(0 0, 100% 0%, 100% 34%, 0% 100%);
+}
+
+.card {
+  padding: 1rem;
+  border: #ccc 1px dotted;
+  margin: 0.7rem 0;
+}
+
+.card-deck {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
+.card-thumbnail {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+@media only screen and (max-width: 767px) {
+  .card-thumbnail {
+    height: 50px;
+    width: 50px;
+  }
+
+  .card > h4 {
+    font-size: 1.2rem;
+  }
 }

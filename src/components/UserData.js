@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import UserModal from './Modal';
 
-const UserTableData = ({ user }) => {
+const UserData = ({ user }) => {
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <>
@@ -14,29 +14,25 @@ const UserTableData = ({ user }) => {
           userid={user.login}
         />
       )}
-      <tr>
-        <td className='m-auto'>
-          <img
-            style={{
-              height: '100px',
-              width: '100px'
-            }}
-            src={user.avatar_url}
-            alt='User Thumbnail'
-          />
-        </td>
-        <td onClick={() => setModalShow(true)}>{user.login}</td>
-        <td>
+      <div className='card text-center my-2'>
+        <img
+          className='card-thumbnail'
+          src={user.avatar_url}
+          alt='User Thumbnail'
+        />
+
+        <h4 className='my-2'>{user.login}</h4>
+        <div className='my-2'>
           <Button
             variant='outline-secondary'
             onClick={() => setModalShow(true)}
           >
-            More Info
+            More
           </Button>
-        </td>
-      </tr>
+        </div>
+      </div>
     </>
   );
 };
 
-export default UserTableData;
+export default UserData;

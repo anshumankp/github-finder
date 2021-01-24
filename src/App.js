@@ -8,7 +8,7 @@ import Loader from './components/Loader';
 import Typewriter from 'typewriter-effect';
 import debounce from 'lodash/debounce';
 
-import UserTableData from './components/UserTableData';
+import UserData from './components/UserData';
 import RepoTableData from './components/RepoTableData';
 import './App.css';
 
@@ -123,25 +123,16 @@ const App = () => {
             <>
               <Paginate />
               <p>
-                {count <= 5
+                {count <= 15
                   ? `Showing 1 - ${count} out of ${count} matches`
-                  : `Showing ${(page - 1) * 5 + 1} - ${page *
-                      5} out of ${count} matches`}
+                  : `Showing ${(page - 1) * 15 + 1} - ${page *
+                      15} out of ${count} matches`}
               </p>
-              <Table striped bordered>
-                <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>User</th>
-                    <th>Info</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.map(user => {
-                    return <UserTableData key={user.id} user={user} />;
-                  })}
-                </tbody>
-              </Table>
+              <div className='card-deck'>
+                {users.map(user => {
+                  return <UserData key={user.id} user={user} />;
+                })}
+              </div>
             </>
           ) : (
             !loading &&
@@ -160,10 +151,10 @@ const App = () => {
             <>
               <Paginate />
               <p>
-                {count <= 5
+                {count <= 15
                   ? `Showing 1 - ${count} out of ${count} matches`
-                  : `Showing ${(page - 1) * 5 + 1} - ${page *
-                      5} out of ${count} matches`}
+                  : `Showing ${(page - 1) * 15 + 1} - ${page *
+                      15} out of ${count} matches`}
               </p>
               <Table striped bordered>
                 <thead>

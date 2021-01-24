@@ -31,7 +31,7 @@ const GitProvider = props => {
             client_id: process.env.REACT_APP_GIT_CLIENT_ID,
             client_secret: process.env.REACT_APP_GIT_CLIENT_SECRET,
             page: page,
-            per_page: 5
+            per_page: 15
           }
         })
         .then(res => {
@@ -45,7 +45,7 @@ const GitProvider = props => {
             setRepos(res.data.items);
             console.log(res.data.items);
           }
-          if (res.data.total_count > page * 5) {
+          if (res.data.total_count > page * 15) {
             setHasNextPage(true);
           } else {
             setHasNextPage(false);
@@ -69,7 +69,7 @@ const GitProvider = props => {
             client_id: process.env.REACT_APP_GIT_CLIENT_ID,
             client_secret: process.env.REACT_APP_GIT_CLIENT_SECRET,
             page: page,
-            per_page: 5
+            per_page: 15
           }
         })
         .then(res => {
@@ -82,7 +82,7 @@ const GitProvider = props => {
             setRepos(res.data.items);
             console.log(res.data.items);
           }
-          if (res.data.total_count > page * 5) {
+          if (res.data.total_count > page * 15) {
             setHasNextPage(true);
           } else {
             setHasNextPage(false);
