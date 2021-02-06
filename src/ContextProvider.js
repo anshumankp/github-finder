@@ -15,6 +15,7 @@ const GitProvider = props => {
   const [hasNextPage, setHasNextPage] = useState(false);
 
   useEffect(() => {
+    setError(null);
     setPage(1);
     if (query === '') {
       setUsers([]);
@@ -36,7 +37,7 @@ const GitProvider = props => {
         })
         .then(res => {
           console.log(res);
-          setError(null);
+
           setCount(res.data.total_count);
 
           if (endpoint === 'users') {
@@ -50,6 +51,15 @@ const GitProvider = props => {
           } else {
             setHasNextPage(false);
           }
+
+          if (res.data.total_count === 0) {
+            setError({
+              msg: `Sorry, we could not find any git ${
+                endpoint === 'repositories' ? 'repo' : 'user'
+              } with that name :(`
+            });
+            console.log(error);
+          }
           setLoading(false);
         })
         .catch(err => {
@@ -60,6 +70,7 @@ const GitProvider = props => {
   }, [query, endpoint]);
 
   useEffect(() => {
+    setError(null);
     query && setLoading(true);
     query &&
       axios
@@ -74,7 +85,7 @@ const GitProvider = props => {
         })
         .then(res => {
           console.log(res);
-          setError(null);
+
           setCount(res.data.total_count);
           if (endpoint === 'users') {
             setUsers(res.data.items);
@@ -86,6 +97,13 @@ const GitProvider = props => {
             setHasNextPage(true);
           } else {
             setHasNextPage(false);
+          }
+          if (res.data.total_count === 0) {
+            setError({
+              msg: `Sorry, we could not find any git ${
+                endpoint === 'repositories' ? 'repo' : 'user'
+              } with that name :(`
+            });
           }
           setLoading(false);
         })

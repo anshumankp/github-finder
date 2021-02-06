@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Modal,
-  Button,
-  Image,
-  Row,
-  Col,
-  Badge,
-  ListGroup,
-  ListGroupItem,
-  Container
-} from 'react-bootstrap';
+import { Modal, Image, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Loader from './Loader';
 import axios from 'axios';
 

@@ -1,0 +1,92 @@
+.card-user {
+  padding: 1rem;
+  border: #ccc 1px dotted;
+  margin: 0.7rem 0;
+  backdrop-filter: blur(2px);
+}
+
+.card-repo {
+  padding: 1rem;
+  border: #ccc 1px dotted;
+  margin: 0.7rem 0;
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 350px;
+}
+
+.card-repo-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  background-color: lightgrey;
+}
+
+.card-repo-username {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.card-repo-header i {
+  color: grey;
+}
+
+.card-repo-footer {
+  width: 100%;
+}
+
+.card-deck-user {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
+.card-deck-repo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
+.card-user-thumbnail {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.card-repo-thumbnail {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 993px) {
+  .card-deck-repo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .card-deck-user {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-deck-repo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 412px) {
+  .card-deck-user {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .card-deck-repo {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

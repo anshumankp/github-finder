@@ -3,9 +3,15 @@ import { Spinner } from 'react-bootstrap';
 
 const Loader = () => {
   return (
-    <Spinner animation='border' role='status' className='my-4 mx-auto'>
-      <span className='sr-only'>Loading...</span>
-    </Spinner>
+    <div className='text-center'>
+      <Spinner
+        animation='border text-primary'
+        role='status'
+        className='my-4 mx-auto'
+      >
+        <span className='sr-only'>Loading...</span>
+      </Spinner>
+    </div>
   );
 };
 

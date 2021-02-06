@@ -10,7 +10,7 @@ const Paginate = () => {
   };
   return (
     <>
-      <Pagination>
+      <Pagination className='justify-content-center'>
         {page !== 1 && (
           <Pagination.Prev disabled={error} onClick={() => adjustPage(-1)} />
         )}

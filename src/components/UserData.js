@@ -1,7 +1,8 @@
 import React from 'react';
+import './Cards.css';
 
 import { Button } from 'react-bootstrap';
-import UserModal from './Modal';
+import UserModal from './UserModal';
 
 const UserData = ({ user }) => {
   const [modalShow, setModalShow] = React.useState(false);
@@ -14,9 +15,9 @@ const UserData = ({ user }) => {
           userid={user.login}
         />
       )}
-      <div className='card text-center my-2'>
+      <div className='card-user text-center my-2'>
         <img
-          className='card-thumbnail'
+          className='card-user-thumbnail'
           src={user.avatar_url}
           alt='User Thumbnail'
         />

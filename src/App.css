@@ -12,33 +12,40 @@
   clip-path: polygon(0 0, 100% 0%, 100% 34%, 0% 100%);
 }
 
-.card {
-  padding: 1rem;
-  border: #ccc 1px dotted;
-  margin: 0.7rem 0;
-}
-
-.card-deck {
+.card-deck-user {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
 }
 
-.card-thumbnail {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  margin: auto;
+.card-deck-repo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
+@media only screen and (max-width: 993px) {
+  .card-deck-repo {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media only screen and (max-width: 767px) {
-  .card-deck {
+  .card-deck-user {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-deck-repo {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media only screen and (max-width: 412px) {
-  .card-deck {
+  .card-deck-user {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .card-deck-repo {
     grid-template-columns: repeat(1, 1fr);
   }
 }

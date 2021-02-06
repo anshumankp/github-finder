@@ -1,19 +1,22 @@
-import React, { useState, useContext, useCallback } from 'react';
+import React, { useState, useContext, useCallback, useEffect } from 'react';
 import { GitContext } from './ContextProvider';
 
-import { Container, Form, InputGroup, Table } from 'react-bootstrap';
+import { Container, Form, InputGroup } from 'react-bootstrap';
 import Paginate from './components/Paginate';
 import Loader from './components/Loader';
 
 import Typewriter from 'typewriter-effect';
 import debounce from 'lodash/debounce';
 
+import useAlan from './components/useAlan';
+
 import UserData from './components/UserData';
-import RepoTableData from './components/RepoTableData';
+import RepoData from './components/RepoData';
 import './App.css';
 
 const App = () => {
   const {
+    query,
     setQuery,
     users,
     setUsers,
@@ -28,7 +31,9 @@ const App = () => {
   } = useContext(GitContext);
 
   const [value, setValue] = useState('');
-
+  useEffect(() => {
+    setValue(query);
+  }, [query]);
   const debouncedSearch = useCallback(
     debounce(nextValue => setQuery(nextValue), 500),
     []
@@ -44,6 +49,8 @@ const App = () => {
     setUsers([]);
     setRepos([]);
   };
+
+  useAlan();
 
   return (
     <>
@@ -76,15 +83,11 @@ const App = () => {
             className='border-left-0'
             value={value}
             autoComplete='off'
-            placeholder={
-              endpoint === 'users'
-                ? 'Search for a github user..'
-                : 'Search for a github repository...'
-            }
+            placeholder={`Search github ${endpoint}...`}
             onChange={e => handleSearch(e)}
           />
         </InputGroup>
-        <InputGroup className='mb-4'>
+        <InputGroup className='mb-4 justify-content-center'>
           <Form.Check
             inline
             size='lg'
@@ -113,75 +116,46 @@ const App = () => {
         </InputGroup>
 
         {loading && <Loader />}
-        {error && (
-          <p className='text-danger'>
-            Sorry, Git API request limit reached. Please try after some time.
-          </p>
+        {error && <p className='text-danger'>{error.msg}</p>}
+        {endpoint === 'users' && users.length > 0 && (
+          <>
+            <Paginate />
+            <p className='text-center'>
+              {count <= 9
+                ? `Showing 1 - ${count} out of ${count} matches`
+                : `Showing ${(page - 1) * 9 + 1} - ${page *
+                    9} out of ${count} matches`}
+            </p>
+            <div className='card-deck-user'>
+              {users.map(user => {
+                return <UserData key={user.id} user={user} />;
+              })}
+            </div>
+          </>
         )}
-        {endpoint === 'users' &&
-          (users.length > 0 ? (
-            <>
-              <Paginate />
-              <p>
-                {count <= 9
-                  ? `Showing 1 - ${count} out of ${count} matches`
-                  : `Showing ${(page - 1) * 9 + 1} - ${page *
-                      9} out of ${count} matches`}
-              </p>
-              <div className='card-deck'>
-                {users.map(user => {
-                  return <UserData key={user.id} user={user} />;
-                })}
-              </div>
-            </>
-          ) : (
-            !loading &&
-            !error &&
-            (!value ? (
-              <h3>
-                Type something above to GIT the user you're looking for :)
-              </h3>
-            ) : (
-              <p>Sorry, no such git user found</p>
-            ))
-          ))}
 
-        {endpoint === 'repositories' &&
-          (repos.length > 0 ? (
-            <>
-              <Paginate />
-              <p>
-                {count <= 9
-                  ? `Showing 1 - ${count} out of ${count} matches`
-                  : `Showing ${(page - 1) * 9 + 1} - ${page *
-                      9} out of ${count} matches`}
-              </p>
-              <Table striped bordered>
-                <thead>
-                  <tr>
-                    <th>Repository Name</th>
-                    <th>Description</th>
-                    <th>Owner</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {repos.map(repo => {
-                    return <RepoTableData key={repo.id} repo={repo} />;
-                  })}
-                </tbody>
-              </Table>
-            </>
-          ) : (
-            !loading &&
-            !error &&
-            (!value ? (
-              <h3>
-                Type something above to GIT the repo you're looking for :)
-              </h3>
-            ) : (
-              <p>Sorry, no such git repository found</p>
-            ))
-          ))}
+        {endpoint === 'repositories' && repos.length > 0 && (
+          <>
+            <Paginate />
+            <p className='text-center'>
+              {count <= 9
+                ? `Showing 1 - ${count} out of ${count} matches`
+                : `Showing ${(page - 1) * 9 + 1} - ${page *
+                    9} out of ${count} matches`}
+            </p>
+            <div className='card-deck-repo'>
+              {repos.map(repo => {
+                return <RepoData key={repo.id} repo={repo} />;
+              })}
+            </div>
+          </>
+        )}
+
+        {!loading && !error && !value && !repos.length && !users.length && (
+          <h3>
+            {`Type something above to GIT the ${endpoint} you're looking for :)`}
+          </h3>
+        )}
       </Container>
     </>
   );
