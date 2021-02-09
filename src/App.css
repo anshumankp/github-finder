@@ -6,12 +6,86 @@
 }
 
 .wall-splash {
+  display: none;
   height: 100px;
   width: 100%;
   background: lightgrey;
   clip-path: polygon(0 0, 100% 0%, 100% 34%, 0% 100%);
 }
 
+.custom-search-box {
+  outline: none;
+  padding-left: 50px;
+  border: 3px solid grey;
+  border-radius: 35px !important;
+  border-bottom: 3px solid grey;
+  background: transparent;
+}
+
+.custom-search-box:focus {
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+  border: 3px solid #03dac6;
+}
+
+.search-group {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  border: none;
+}
+
+.clear-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  z-index: 3;
+}
+
+.clear-icon i {
+  color: lightgrey;
+  cursor: pointer;
+}
+
+.clear-icon i:hover {
+  color: grey;
+}
+
+.button-group {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  border-bottom: 1px solid lightgrey;
+}
+
+.button {
+  letter-spacing: 2px;
+  padding: 8px 14px;
+  background: transparent;
+  border: none;
+}
+
+.active-btn {
+  font-weight: 600;
+  border-bottom: 4px solid #03dac6;
+}
+
+.page-item.active .page-link {
+  background-color: #03dac6;
+  border-color: #03dac6;
+}
+
+.page-link {
+  color: #03dac6;
+}
 .card-deck-user {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -28,6 +102,10 @@
   .card-deck-repo {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  html {
+    font-size: 13px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -38,6 +116,12 @@
   .card-deck-repo {
     grid-template-columns: repeat(2, 1fr);
   }
+  .card-repo {
+    min-height: 260px;
+  }
+  html {
+    font-size: 12px;
+  }
 }
 
 @media only screen and (max-width: 412px) {
@@ -47,5 +131,13 @@
 
   .card-deck-repo {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .card-repo {
+    min-height: 220px;
+  }
+
+  html {
+    font-size: 11px;
   }
 }

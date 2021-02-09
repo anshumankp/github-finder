@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, Image, Badge, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const RepoModal = props => {

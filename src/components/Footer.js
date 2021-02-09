@@ -1,28 +1,21 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import './Footer.css';
 
-function Footer() {
+const Footer = () => {
   return (
     <div className='footer'>
+      <span className='logo-text'>&#169; Anshuman Kashyap, 2021 |</span>
       <ul className='social-links'>
         <li>
-          <span>
-            <i class='fab fa-github'></i>
-          </span>
+          <i class='fab fa-linkedin linkedin'></i>
         </li>
+
         <li>
-          <span>
-            <i class='fab fa-linkedin'></i>
-          </span>
-        </li>
-        <li>
-          <span>
-            <i class='fab fa-instagram'></i>
-          </span>
+          <i class='fab fa-instagram insta'></i>
         </li>
       </ul>
     </div>
   );
-}
+};
 
 export default Footer;

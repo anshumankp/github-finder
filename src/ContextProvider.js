@@ -16,6 +16,7 @@ const GitProvider = props => {
 
   useEffect(() => {
     setError(null);
+
     setPage(1);
     if (query === '') {
       setUsers([]);
@@ -42,12 +43,14 @@ const GitProvider = props => {
 
           if (endpoint === 'users') {
             setUsers(res.data.items);
+            console.log(res.data.items);
           } else if (endpoint === 'repositories') {
             setRepos(res.data.items);
             console.log(res.data.items);
           }
           if (res.data.total_count > page * 9) {
             setHasNextPage(true);
+            console.log(hasNextPage);
           } else {
             setHasNextPage(false);
           }
@@ -64,13 +67,16 @@ const GitProvider = props => {
         })
         .catch(err => {
           console.error(err);
-          setError(err);
+          setError(
+            `Sorry, there's an error with the github api (request rate limite exceeded). Please try again after sometime.`
+          );
           setLoading(false);
         });
   }, [query, endpoint]);
 
   useEffect(() => {
     setError(null);
+
     query && setLoading(true);
     query &&
       axios
@@ -89,6 +95,7 @@ const GitProvider = props => {
           setCount(res.data.total_count);
           if (endpoint === 'users') {
             setUsers(res.data.items);
+            console.log(res.data.items);
           } else if (endpoint === 'repositories') {
             setRepos(res.data.items);
             console.log(res.data.items);
@@ -108,7 +115,9 @@ const GitProvider = props => {
           setLoading(false);
         })
         .catch(err => {
-          setError(err);
+          setError(
+            `Sorry, there's an error with the github api (request rate limite exceeded). Please try again after sometime.`
+          );
           setLoading(false);
         });
   }, [page, endpoint]);

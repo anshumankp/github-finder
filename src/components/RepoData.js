@@ -8,7 +8,7 @@ import RepoModal from './RepoModal';
 const RepoData = ({ repo }) => {
   const [userModalShow, setUserModalShow] = React.useState(false);
   const [repoModalShow, setRepoModalShow] = React.useState(false);
-  const { name, description, owner, updated_at, created_at } = repo;
+  const { name, description, owner } = repo;
   return (
     <>
       {userModalShow && (
@@ -31,7 +31,7 @@ const RepoData = ({ repo }) => {
           <div className='card-repo-username mx-2'> {owner.login}</div>
 
           <i
-            className='fas fa-info-circle fa-2x ml-auto'
+            className='fas fa-info-circle fa-2x ml-auto card-repo-user-icon'
             onClick={() => setUserModalShow(true)}
           ></i>
         </div>
@@ -41,8 +41,8 @@ const RepoData = ({ repo }) => {
           </h4>
           <p className='text-muted'>
             {description
-              ? description.length > 50
-                ? description.substring(0, 50) + ' . . . .'
+              ? description.length > 100
+                ? description.substring(0, 100) + ' . . . .'
                 : description
               : 'Description not available for this repo'}
           </p>{' '}
@@ -53,7 +53,7 @@ const RepoData = ({ repo }) => {
             variant='outline-secondary '
             onClick={() => setRepoModalShow(true)}
           >
-            More
+            Details
           </Button>
         </div>
       </div>

@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Pagination } from 'react-bootstrap';
 import { GitContext } from '../ContextProvider';
 
+import './Paginate.css';
+
 const Paginate = () => {
   const { page, setPage, hasNextPage, error } = useContext(GitContext);
 

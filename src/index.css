@@ -1,11 +1,5 @@
-.typewriter {
-  font-size: 45px;
-  text-align: center;
-  padding: 10px;
-}
-
 #root {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

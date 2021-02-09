@@ -5,7 +5,8 @@ const Loader = () => {
   return (
     <div className='text-center'>
       <Spinner
-        animation='border text-primary'
+        animation='border'
+        style={{ color: '#03dac6' }}
         role='status'
         className='my-4 mx-auto'
       >

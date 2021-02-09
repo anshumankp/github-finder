@@ -1,0 +1,14 @@
+.navbar {
+  height: 60px;
+  width: 100%;
+  border-bottom: 1px dotted grey;
+  margin-bottom: 20px;
+}
+
+.navbar-logo {
+  letter-spacing: 1px;
+}
+
+.navbar-logo i {
+  margin-right: 5px;
+}
