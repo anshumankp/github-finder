@@ -15,6 +15,7 @@ import FallbackMessage from './components/FallbackMessage';
 import Footer from './components/Footer';
 
 import './App.css';
+import Error from './components/Error';
 
 const App = () => {
   const { loading, error } = useContext(GitContext);
@@ -45,11 +46,13 @@ const App = () => {
           <EndpointSwitchButtons />
 
           {loading && <Loader />}
-          {error && <p className='text-danger text-center'>{error.msg}</p>}
+          {error && <Error message={error.msg} />}
 
-          <SearchResults />
+          {!error && <SearchResults />}
 
-          <FallbackMessage searchBoxValue={searchBoxValue} />
+          {!searchBoxValue && (
+            <FallbackMessage searchBoxValue={searchBoxValue} />
+          )}
         </div>
       </Container>
 

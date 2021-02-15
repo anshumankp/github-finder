@@ -15,14 +15,14 @@ const useAlan = () => {
   );
 
   const updateState = (query, endpoint) => {
-    setEndpoint(endpoint);
     setQuery(query);
+    setEndpoint(endpoint);
   };
 
   const search = useCallback(
     ({ detail: { endpoint, query } }) => {
       alanInstance.playText(`Showing search results for ${endpoint} ${query} `);
-      console.log(query);
+      console.log("In useAlan component's search function", query);
       updateState(query, endpoint);
     },
     [alanInstance, setEndpoint, setQuery, updateState]

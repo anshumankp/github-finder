@@ -24,8 +24,8 @@ const GitProvider = props => {
       return;
     }
 
-    query && setLoading(true);
-    query &&
+    if (query) {
+      setLoading(true);
       axios
         .get(`https://api.github.com/search/${endpoint}`, {
           params: {
@@ -37,20 +37,18 @@ const GitProvider = props => {
           }
         })
         .then(res => {
-          console.log(res);
-
+          // console.log(res);
           setCount(res.data.total_count);
-
           if (endpoint === 'users') {
             setUsers(res.data.items);
-            console.log(res.data.items);
+            // console.log(res.data.items);
           } else if (endpoint === 'repositories') {
             setRepos(res.data.items);
-            console.log(res.data.items);
+            // console.log(res.data.items);
           }
           if (res.data.total_count > page * 9) {
             setHasNextPage(true);
-            console.log(hasNextPage);
+            // console.log(hasNextPage);
           } else {
             setHasNextPage(false);
           }
@@ -59,26 +57,28 @@ const GitProvider = props => {
             setError({
               msg: `Sorry, we could not find any git ${
                 endpoint === 'repositories' ? 'repo' : 'user'
-              } with that name :(`
+              } with that name..`
             });
-            console.log(error);
+            // console.log(error);
           }
           setLoading(false);
         })
         .catch(err => {
-          console.error(err);
-          setError(
-            `Sorry, there's an error with the github api (request rate limite exceeded). Please try again after sometime.`
-          );
+          // console.error(err);
+          setError({
+            msg: `Sorry, request rate limit exceeded. Please try again after sometime..`
+          });
           setLoading(false);
         });
-  }, [query, endpoint]);
+    }
+  }, [query, endpoint, setQuery, setEndpoint]);
 
   useEffect(() => {
     setError(null);
 
-    query && setLoading(true);
-    query &&
+    if (query) {
+      setLoading(true);
+
       axios
         .get(`https://api.github.com/search/${endpoint}`, {
           params: {
@@ -90,15 +90,15 @@ const GitProvider = props => {
           }
         })
         .then(res => {
-          console.log(res);
+          // console.log(res);
 
           setCount(res.data.total_count);
           if (endpoint === 'users') {
             setUsers(res.data.items);
-            console.log(res.data.items);
+            // console.log(res.data.items);
           } else if (endpoint === 'repositories') {
             setRepos(res.data.items);
-            console.log(res.data.items);
+            // console.log(res.data.items);
           }
           if (res.data.total_count > page * 9) {
             setHasNextPage(true);
@@ -115,12 +115,13 @@ const GitProvider = props => {
           setLoading(false);
         })
         .catch(err => {
-          setError(
-            `Sorry, there's an error with the github api (request rate limite exceeded). Please try again after sometime.`
-          );
+          setError({
+            msg: `Sorry, there's an error with the github api (request rate limite exceeded). Please try again after sometime.`
+          });
           setLoading(false);
         });
-  }, [page, endpoint]);
+    }
+  }, [page, endpoint, setPage, setEndpoint]);
 
   return (
     <GitContext.Provider

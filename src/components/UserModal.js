@@ -18,12 +18,12 @@ const UserModal = props => {
         }
       })
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setUserData(res.data);
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
+        // console.error(err);
         setLoading(false);
       });
   }, [userid]);
@@ -52,7 +52,7 @@ const UserModal = props => {
             </div>
             <h3 className='my-2 w-50 mx-auto text-center'>
               <i className='fab fa-github mr-1'></i>
-              <a href={userData.html_url} target='_blank'>
+              <a href={userData.html_url} target='_blank' rel='noreferrer'>
                 {userData.login}
               </a>
             </h3>

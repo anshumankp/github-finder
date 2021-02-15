@@ -31,14 +31,14 @@ const RepoModal = props => {
               }}
               src={repo.owner.avatar_url}
             />
-            <a href={repo.owner.html_url} target='_blank'>
+            <a href={repo.owner.html_url} target='_blank' rel='noreferrer'>
               {repo.owner.login}
             </a>
           </ListGroupItem>
 
           <ListGroupItem>
             Repo Link: <i className='fab fa-github mr-1'></i>
-            <a href={repo.html_url} target='_blank'>
+            <a href={repo.html_url} target='_blank' rel='noreferrer'>
               {repo.name}
             </a>
           </ListGroupItem>

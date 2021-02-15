@@ -1,0 +1,12 @@
+.error-box {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 0px;
+  align-items: center;
+}
+
+.error-box img {
+  margin: 10px 0px;
+  height: 125px;
+  width: 150px;
+}
