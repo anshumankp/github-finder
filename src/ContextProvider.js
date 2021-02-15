@@ -109,7 +109,7 @@ const GitProvider = props => {
             setError({
               msg: `Sorry, we could not find any git ${
                 endpoint === 'repositories' ? 'repo' : 'user'
-              } with that name :(`
+              } with that name..`
             });
           }
           setLoading(false);
