@@ -66,7 +66,7 @@ const GitProvider = props => {
         .catch(err => {
           // console.error(err);
           setError({
-            msg: `Sorry, request rate limit exceeded. Please try again after sometime..`
+            msg: `Sorry, request rate limit exceeded. Please try again after some time..`
           });
           setLoading(false);
         });
@@ -116,7 +116,7 @@ const GitProvider = props => {
         })
         .catch(err => {
           setError({
-            msg: `Sorry, there's an error with the github api (request rate limite exceeded). Please try again after sometime.`
+            msg: `Sorry, request rate limit exceeded. Please try again after some time..`
           });
           setLoading(false);
         });
